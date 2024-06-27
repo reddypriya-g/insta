@@ -24,6 +24,10 @@ app.use(cors({
     credentials: true
 }));
 
+app.use(express.json());
+// Routes
+app.use('/', postRoutes);
+
 app.get("/", (req, res) => {
   res.send("Hello World");
 });
