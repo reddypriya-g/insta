@@ -18,7 +18,7 @@ const Post = ({ post, onLike, onComment }) => {
 
   return (
     <div className="post-card">
-      <img src={`http://localhost:5000/uploads/${image}`} alt={description} />
+      <img src={`https://insta-api-delta.vercel.app/uploads/${image}`} alt={description} />
       <div className='post-content'>
       {post.description && <p className="post-description"><b>caption :</b> {post.description}</p> }
       <div className='like'> <button onClick={() => onLike(_id)}>Like ({likes})</button></div>
