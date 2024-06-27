@@ -10,20 +10,20 @@ const postRoutes = require('./routes/postRoutes'); // Adjust path as needed
 const app = express();
 const server = http.createServer(app);
 const io = Server(server, {
-    cors: {
-        origin: "https://insta-frontend-five.vercel.app",
-        methods: ["GET", "POST"],
-        allowedHeaders: ["my-custom-header"],
-        credentials: true
-    }
+   cors: {
+    origin: "https://insta-frontend-five.vercel.app",
+    methods: ["GET", "POST"],
+    allowedHeaders: ["my-custom-header", "Content-Type"],
+    credentials: true
+  }
 });
 app.use('/uploads', express.static('uploads')); // Serve uploaded files
 
 app.use(cors({
-    origin: "https://insta-frontend-five.vercel.app", // Your frontend URL
-    methods: ["GET", "POST"],
-    allowedHeaders: ["Content-Type"],
-    credentials: true
+   origin: "https://insta-frontend-five.vercel.app", // Your frontend URL
+  methods: ["GET", "POST"],
+  allowedHeaders: ["Content-Type", "my-custom-header"],
+  credentials: true
 }));
 app.use(express.json());
 
