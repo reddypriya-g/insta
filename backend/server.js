@@ -11,7 +11,7 @@ const app = express();
 const server = http.createServer(app);
 const io = new Server(server, {
   cors: {
-    origin: 'https://insta-frontend-lzr03q173-priyas-projects-964cf1d3.vercel.app',
+    origin: 'https://insta-frontend-five.vercel.app',
     methods: ['GET', 'POST'],
     credentials: true
   },
@@ -19,7 +19,7 @@ const io = new Server(server, {
 });
 
 app.use(cors({
-    origin: "https://insta-frontend-lzr03q173-priyas-projects-964cf1d3.vercel.app", // Your frontend URL
+    origin: "https://insta-frontend-five.vercel.app", // Your frontend URL
     methods: ["GET", "POST"],
     credentials: true
 }));
