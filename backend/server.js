@@ -1,6 +1,6 @@
 const express = require('express');
 const http = require('http');
-const { Server } = require('socket.io');
+const  Server  = require('socket.io');
 const cors = require('cors');
 const mongoose = require('mongoose');
 const Post = require('./models/Post'); // Ensure Post model is imported
@@ -9,7 +9,7 @@ const postRoutes = require('./routes/postRoutes'); // Adjust path as needed
 
 const app = express();
 const server = http.createServer(app);
-const io = socketIo(server, {
+const io = Server(server, {
     cors: {
         origin: "https://insta-frontend-five.vercel.app",
         methods: ["GET", "POST"],
