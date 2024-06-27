@@ -2,17 +2,6 @@ const express = require('express');
 const router = express.Router();
 const Post = require('../models/Post');
 const multer = require('multer'); // Import multer
-const http = require('http');
-const { Server } = require('socket.io');
-const cors = require('cors');
-const app = express();
-const server = http.createServer(app);
-const io = new Server(server, {
-    cors: {
-      origin: 'https://insta-frontend-five.vercel.app',
-      methods: ['GET', 'POST'],
-    },
-  });
 
 // Multer configuration
 const storage = multer.diskStorage({
@@ -58,8 +47,7 @@ router.post('/', upload.single('image'), async (req, res) => {
     });
 
     const savedPost = await post.save();
-       // Emit new post to all clients
-       io.emit('newPost', savedPost);
+      
     res.status(201).json(savedPost);
   } catch (err) {
     console.error('Error creating post:', err);
