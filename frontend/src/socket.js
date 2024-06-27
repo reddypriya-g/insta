@@ -12,5 +12,11 @@ const socket = io('https://insta-api-delta.vercel.app', {
     'my-custom-header': 'abcd'
   }
 });
+socket.on('connect', () => {
+    console.log('connected');
+});
 
+socket.on('disconnect', () => {
+    console.log('disconnected');
+});
 export default socket;
