@@ -6,7 +6,7 @@
 import { io } from 'socket.io-client';
 
 const socket = io('https://insta-api-delta.vercel.app', {
-  transports: ['websocket', 'polling'],
+  // transports: ['websocket', 'polling'],
   withCredentials: true,
    extraHeaders: {
     'my-custom-header': 'abcd'
