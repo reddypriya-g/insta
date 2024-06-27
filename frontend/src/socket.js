@@ -23,16 +23,18 @@
 import { io } from 'socket.io-client';
 
 const socket = io('https://insta-api-delta.vercel.app', {
-    transports: ['websocket', 'polling'],
-    withCredentials: true,
+  path: '/socket.io',
+  transports: ['websocket'],
+  withCredentials: true,
 });
 
 socket.on('connect', () => {
-    console.log('connected');
+  console.log('connected');
 });
 
-socket.on('disconnect', () => {
-    console.log('disconnected');
+socket.on('connect_error', (error) => {
+  console.error('Connection error:', error);
 });
+
 
 export default socket;
