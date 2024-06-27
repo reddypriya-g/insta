@@ -21,7 +21,6 @@ const io = new Server(server, {
 app.use(cors({
     origin: "https://insta-frontend-five.vercel.app", // Your frontend URL
     methods: ["GET", "POST"],
-    allowedHeaders: ["Content-Type"],
     credentials: true
 }));
 
