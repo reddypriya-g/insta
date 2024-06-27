@@ -1,6 +1,6 @@
 const express = require('express');
 const http = require('http');
-const  Server  = require('socket.io');
+const  {Server}  = require('socket.io');
 const cors = require('cors');
 const mongoose = require('mongoose');
 const Post = require('./models/Post'); // Ensure Post model is imported
@@ -9,32 +9,55 @@ const postRoutes = require('./routes/postRoutes'); // Adjust path as needed
 
 const app = express();
 const server = http.createServer(app);
-const io = Server(server, {
-    cors: {
-        origin: "https://insta-frontend-five.vercel.app",
-        methods: ["GET", "POST"],
-        allowedHeaders: ["my-custom-header"],
-        credentials: true
-    }
-});
+// const io = new Server(server, {
+//   cors: {
+//       origin: "https://insta-frontend-five.vercel.app",
+//       methods: ["GET", "POST"],
+//       credentials: true
+//   }
+// });
+
+// app.use(cors({
+//   origin: "https://insta-frontend-five.vercel.app",
+//   methods: ["GET", "POST"],
+//   credentials: true
+// }));
 app.use('/uploads', express.static('uploads')); // Serve uploaded files
 
-app.use(cors({
-    origin: "https://insta-frontend-five.vercel.app", // Your frontend URL
-    methods: ["GET", "POST"],
-    allowedHeaders: ["Content-Type"],
-    credentials: true
-}));
 app.use(express.json());
 
 app.use('/api/posts', postRoutes); // Route for handling posts
 
-app.get("/",(req,res)=>{
-  res.send("welcome");
-})
+
+const io = new Server(server, {
+  cors: {
+      origin: "https://insta-frontend-five.vercel.app",
+      methods: ["GET", "POST"],
+      credentials: true
+  }
+});
+
+app.use(cors({
+  origin: "https://insta-frontend-five.vercel.app",
+  methods: ["GET", "POST"],
+  credentials: true
+}));
+
+app.get("/", (req, res) => {
+  res.send("Hello World");
+});
+
+// io.on('connection', (socket) => {
+//   console.log('a user connected');
+
+
+//   socket.on('disconnect', () => {
+//     console.log('user disconnected');
+//   });
+// });
+
 io.on('connection', (socket) => {
   console.log('a user connected');
-
   socket.on('likePost', async (postId) => {
     try {
       const updatedPost = await Post.findByIdAndUpdate(postId, { $inc: { likes: 1 } }, { new: true });
@@ -65,10 +88,9 @@ io.on('connection', (socket) => {
         }
       });
   socket.on('disconnect', () => {
-    console.log('user disconnected');
+      console.log('user disconnected');
   });
 });
-
 const PORT = process.env.PORT || 5000;
 
 mongoose
