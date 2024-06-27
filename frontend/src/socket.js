@@ -6,10 +6,7 @@
 import { io } from 'socket.io-client';
 
 const socket = io('https://insta-api-delta.vercel.app', {
-  withCredentials: true,
-  extraHeaders: {
-    'my-custom-header': 'abcd'
-  }
+  withCredentials: true
 });
 
 export default socket;
