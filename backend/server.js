@@ -23,6 +23,9 @@ app.use(express.json());
 
 app.use('/api/posts', postRoutes); // Route for handling posts
 
+app.get("/",(req,res)=>{
+  res.send("welcome");
+})
 io.on('connection', (socket) => {
   console.log('a user connected');
 
