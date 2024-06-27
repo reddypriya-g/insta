@@ -33,7 +33,7 @@ const PostForm = () => {
     formData.append('description', description);
 
     try {
-      const response = await axios.post('http://localhost:5000/api/posts', formData, {
+      const response = await axios.post('https://insta-api-delta.vercel.app/api/posts', formData, {
         headers: {
           'Content-Type': 'multipart/form-data',
         },
