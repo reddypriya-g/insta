@@ -20,9 +20,10 @@ const io = socketIo(server, {
 app.use('/uploads', express.static('uploads')); // Serve uploaded files
 
 app.use(cors({
-  origin: 'https://insta-frontend-five.vercel.app', // Your frontend URL
-  methods: ['GET', 'POST'],
-  credentials: true
+    origin: "https://insta-frontend-five.vercel.app", // Your frontend URL
+    methods: ["GET", "POST"],
+    allowedHeaders: ["Content-Type"],
+    credentials: true
 }));
 app.use(express.json());
 
