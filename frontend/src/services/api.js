@@ -1,6 +1,6 @@
 import axios from 'axios';
 
-const API_URL = 'http://localhost:5000/api/posts';
+const API_URL = 'https://insta-api-delta.vercel.app/api/posts';
 
 export const fetchPosts = async () => {
   try {
