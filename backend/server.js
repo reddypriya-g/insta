@@ -10,6 +10,7 @@ const postRoutes = require('./routes/postRoutes'); // Adjust path as needed
 const app = express();
 const server = http.createServer(app);
 const io = new Server(server, {
+  path: '/socket.io', // Specify the path for Socket.io
   cors: {
     origin: 'https://insta-frontend-five.vercel.app',
     methods: ['GET', 'POST'],
