@@ -13,12 +13,17 @@ const io = new Server(server, {
   cors: {
     origin: 'https://insta-frontend-five.vercel.app',
     methods: ['GET', 'POST'],
+     credentials: true
   },
 });
 
 app.use('/uploads', express.static('uploads')); // Serve uploaded files
 
-app.use(cors());
+app.use(cors({
+  origin: 'https://insta-frontend-five.vercel.app', // Your frontend URL
+  methods: ['GET', 'POST'],
+  credentials: true
+}));
 app.use(express.json());
 
 app.use('/api/posts', postRoutes); // Route for handling posts
